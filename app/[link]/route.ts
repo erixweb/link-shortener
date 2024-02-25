@@ -16,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { link: string
 	const link = params.link
 	if (!link) return Response.redirect("/")
 
-	const { rows } = await client.execute({
+	const { rows }: { rows: any } = await client.execute({
 		sql: "SELECT * FROM links WHERE href = ?",
 		args: [link],
 	})
