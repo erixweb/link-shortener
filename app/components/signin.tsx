@@ -8,7 +8,7 @@ export default function SignIn() {
 			onClick={() => signIn("github")}
 			className=" bg-slate-950 text-white px-[16px] py-[8px] rounded-[7px]"
 		>
-			Github repo
+			Sign in
 		</button>
 	)
 }
