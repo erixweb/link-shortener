@@ -21,8 +21,7 @@ export async function GET(request: Request, { params }: { params: { link: string
 		args: [link],
 	})
 
-	const originalLink = getOriginalLink(links, "erik")?.original!
-	if (!originalLink) return Response.redirect("/")
+	if (!rows) return Response.redirect("/")
 
 	return Response.redirect(rows[0].original)
 }
