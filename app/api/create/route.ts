@@ -10,7 +10,7 @@ export async function POST(request: Request, { params }: { params: { link: strin
 
 	if (!original.toString().startsWith("https://")) return Response.redirect("/")
 	const { rows }: { rows: any } = await client.execute({
-		sql: "SELECT * FROM links WHERE href = ?",
+		sql: "SELECT (href, original) FROM links WHERE href = ?",
 		args: [href],
 	})
 

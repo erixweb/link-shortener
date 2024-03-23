@@ -17,25 +17,13 @@ export async function GET(request: Request, { params }: { params: { link: string
 	if (!link) return Response.redirect("/")
 
 	const { rows }: { rows: any } = await client.execute({
-		sql: "SELECT * FROM links WHERE href = ?",
+		sql: "SELECT (href, original) FROM links WHERE href = ?",
 		args: [link],
 	})
 
 	if (!rows) return Response.redirect("/")
 
 	return Response.redirect(rows[0].original)
-}
-
-const getOriginalLink = (links: Array<Links>, query: string): Links | null => {
-	// Search requested link.
-	const link: Links | 0 = links.find((link) => link.href === query) || 0
-
-	if (!link) return null
-
-	return {
-		href: link.href,
-		original: link.original,
-	}
 }
 
 type Links = {
